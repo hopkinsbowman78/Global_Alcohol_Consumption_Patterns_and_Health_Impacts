@@ -1,1 +1,3 @@
 # Global_Alcohol_Consumption_Patterns_and_Health_Impacts
+
+This project proposal tells a data-driven story about global alcohol consumption patterns and their health impacts. It seeks to answer key questions about which regions and demographics consume the most alcohol, how consumption trends have shifted over time, and what health consequences result from alcohol use. The story will be grounded in data from Our World in Data and the Global Burden of Disease study, providing insights into both consumption behaviors and public health outcomes. The findings could guide policymakers in addressing alcohol-related health challenges globally.
