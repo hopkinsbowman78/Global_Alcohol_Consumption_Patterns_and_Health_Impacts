@@ -1,4 +1,4 @@
-Entity,Year,AlcoholConsumptionPerCapita
+Entity,Year,alcohol_consumption_per_capita
 Afghanistan,2000,0.00277
 Afghanistan,2005,0.02684
 Afghanistan,2010,0.01241

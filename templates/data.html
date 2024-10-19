@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data from Database</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-5">Database Data</h1>
-        <div class="table-responsive mt-3">
-            <!-- Render the DataFrame as an HTML table -->
-            {{ tables|safe }}
+        <h2 class="my-4">{{ title }}</h2>
+        <div>
+            {{ table|safe }}
         </div>
     </div>
 </body>
 </html>
+
 
 

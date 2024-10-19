@@ -1,99 +1,23 @@
-# from flask import Flask, render_template
-# import psycopg2
-# from dotenv import load_dotenv
-# import os
-# import pandas as pd
-
-# app = Flask(__name__)
-
-# # Load environment variables from the .env file
-# load_dotenv()
-
-# # Function to connect to PostgreSQL database and fetch data
-# def fetch_data():
-#     # Fetch environment variables
-#     db_host = os.getenv('DB_HOST')
-#     db_name = os.getenv('DB_NAME')
-#     db_user = os.getenv('DB_USER')
-#     db_password = os.getenv('DB_PASSWORD')
-#     db_port = os.getenv('DB_PORT')
-
-#     connection = None
-#     cursor = None
-
-#     try:
-#         # Connect to PostgreSQL database
-#         connection = psycopg2.connect(
-#             host=db_host,
-#             database=db_name,
-#             user=db_user,
-#             password=db_password,
-#             port=db_port
-#         )
-#         cursor = connection.cursor()
-
-#         # Execute a SQL query
-#         query = "SELECT * FROM campaign"  # Replace with your actual table name
-#         cursor.execute(query)
-
-#         # Fetch the data
-#         data = cursor.fetchall()
-
-#         # Fetch the column names
-#         col_names = [desc[0] for desc in cursor.description]
-
-#         # Create a Pandas DataFrame from the fetched data
-#         df = pd.DataFrame(data, columns=col_names)
-
-#         return df
-
-#     except Exception as e:
-#         print(f"Error: {e}")
-#         return None
-
-#     finally:
-#         # Close the cursor and connection
-#         if cursor:
-#             cursor.close()
-#         if connection:
-#             connection.close()
-
-# # Route to display the DataFrame in an HTML page
-# @app.route('/')
-# def index():
-#     df = fetch_data()
-#     if df is not None:
-#         # Convert DataFrame to HTML and pass it to the template
-#         return render_template('data.html', tables=df.to_html(classes='data', header="true"))
-#     else:
-#         return 'Error fetching data', 500
-
-# if __name__ == '__main__':
-#     app.run(debug=True)
-
-from flask import Flask, render_template
+from flask import Flask, request, render_template
 import psycopg2
 from dotenv import load_dotenv
 import os
 import pandas as pd
 
-app = Flask(__name__)
-
-# Load environment variables from the .env file
+# Load environment variables from .env file
 load_dotenv()
 
-# Function to connect to PostgreSQL database and fetch data from three tables
-def fetch_merged_data():
-    # Fetch environment variables
-    db_host = os.getenv('DB_HOST')
-    db_name = os.getenv('DB_NAME')
-    db_user = os.getenv('DB_USER')
-    db_password = os.getenv('DB_PASSWORD')
-    db_port = os.getenv('DB_PORT')
+app = Flask(__name__)
 
-    connection = None
-    cursor = None
+# Database connection parameters from environment variables
+db_host = os.getenv('DB_HOST')
+db_name = os.getenv('DB_NAME')
+db_user = os.getenv('DB_USER')
+db_password = os.getenv('DB_PASSWORD')
+db_port = os.getenv('DB_PORT')
 
+# Function to connect to the PostgreSQL database and fetch merged data
+def fetch_data():
     try:
         # Connect to PostgreSQL database
         connection = psycopg2.connect(
@@ -103,38 +27,40 @@ def fetch_merged_data():
             password=db_password,
             port=db_port
         )
+        
+        # Create a cursor object
         cursor = connection.cursor()
 
-        # Queries to fetch data from all three tables
-        query_consumption_gdp = "SELECT * FROM consumption_gdp"
-        query_fraction_of_mortality = "SELECT * FROM fraction_of_mortality"
-        query_per_capita_litres = "SELECT * FROM per_capita_litres"
+        # Execute SQL queries to get data from all three tables
+        query_alcohol_consumption_per_capita = "SELECT * FROM alcohol_consumption_per_capita"
+        query_alcohol_consumption_vs_gdp = "SELECT * FROM alcohol_consumption_vs_gdp"
+        query_alcohol_related_mortality = "SELECT * FROM alcohol_related_mortality"
 
-        # Fetch consumption_gdp data
-        cursor.execute(query_consumption_gdp)
-        data_consumption_gdp = cursor.fetchall()
-        col_names_consumption_gdp = [desc[0] for desc in cursor.description]
+        # Fetch alcohol_consumption_per_capita data
+        cursor.execute(query_alcohol_consumption_per_capita)
+        data_alcohol_consumption_per_capita = cursor.fetchall()
+        col_names_alcohol_consumption_per_capita = [desc[0] for desc in cursor.description]
 
-        # Fetch fraction_of_mortality data
-        cursor.execute(query_fraction_of_mortality)
-        data_fraction_of_mortality = cursor.fetchall()
-        col_names_fraction_of_mortality = [desc[0] for desc in cursor.description]
+        # Fetch alcohol_consumption_vs_gdp data
+        cursor.execute(query_alcohol_consumption_vs_gdp)
+        data_alcohol_consumption_vs_gdp = cursor.fetchall()
+        col_names_alcohol_consumption_vs_gdp = [desc[0] for desc in cursor.description]
 
-        # Fetch per_capita_litres data
-        cursor.execute(query_per_capita_litres)
-        data_per_capita_litres = cursor.fetchall()
-        col_names_per_capita_litres = [desc[0] for desc in cursor.description]
+        # Fetch alcohol_related_mortality data
+        cursor.execute(query_alcohol_related_mortality)
+        data_alcohol_related_mortality = cursor.fetchall()
+        col_names_alcohol_related_mortality = [desc[0] for desc in cursor.description]
 
         # Create Pandas DataFrames from the fetched data
-        df_consumption_gdp = pd.DataFrame(data_consumption_gdp, columns=col_names_consumption_gdp)
-        df_fraction_of_mortality = pd.DataFrame(data_fraction_of_mortality, columns=col_names_fraction_of_mortality)
-        df_per_capita_litres = pd.DataFrame(data_per_capita_litres, columns=col_names_per_capita_litres)
+        df_alcohol_consumption_per_capita = pd.DataFrame(data_alcohol_consumption_per_capita, columns=col_names_alcohol_consumption_per_capita)
+        df_alcohol_consumption_vs_gdp = pd.DataFrame(data_alcohol_consumption_vs_gdp, columns=col_names_alcohol_consumption_vs_gdp)
+        df_alcohol_related_mortality = pd.DataFrame(data_alcohol_related_mortality, columns=col_names_alcohol_related_mortality)
+        
+        # Merge DataFrames on common columns ('entity', 'year')
+        df_merged_1 = pd.merge(df_alcohol_consumption_per_capita, df_alcohol_consumption_vs_gdp, on=['entity', 'year', 'alcohol_consumption_per_capita'], how='outer')
+        df_global_alcohol = pd.merge(df_merged_1, df_alcohol_related_mortality, on=['entity', 'year'], how='outer')
 
-        # Merge DataFrames on common columns ('entity', 'code', and 'year')
-        df_merged_1 = pd.merge(df_consumption_gdp, df_fraction_of_mortality, on=['entity', 'code', 'year'], how='outer')
-        df_merged_final = pd.merge(df_merged_1, df_per_capita_litres, on=['entity', 'code', 'year'], how='outer')
-
-        return df_merged_final
+        return df_global_alcohol
 
     except Exception as e:
         print(f"Error: {e}")
@@ -147,16 +73,40 @@ def fetch_merged_data():
         if connection:
             connection.close()
 
-# Route to display the merged DataFrame in an HTML page
-@app.route('/')
-def index():
-    df = fetch_merged_data()  # Fetch the merged data
-    if df is not None:
-        # Convert DataFrame to HTML and pass it to the template
-        return render_template('data.html', tables=df.to_html(classes='data', header="true"))
-    else:
-        return 'Error fetching data', 500
+# Define the Flask route to show all countries
+@app.route('/all-countries', methods=['GET'])
+def show_all_countries():
+    # Fetch the merged data
+    df_global_alcohol = fetch_data()
 
+    if df_global_alcohol is not None:
+        # Convert the DataFrame to an HTML table
+        html_table = df_global_alcohol.to_html(classes='table table-striped', index=False)
+        return render_template("data.html", title="Global Alcohol Data - All Countries", table=html_table)
+    else:
+        return "<p>Failed to fetch data from the database.</p>", 500
+
+# Define the Flask route to sort data by country
+@app.route('/sort-by-country', methods=['GET'])
+def sort_by_country():
+    country = request.args.get('country')
+    if not country:
+        return "<p>Please provide a country parameter.</p>", 400
+
+    # Fetch the merged data
+    df_global_alcohol = fetch_data()
+
+    if df_global_alcohol is not None:
+        # Filter data by the specified country
+        filtered_data = df_global_alcohol[df_global_alcohol['entity'].str.contains(country, case=False, na=False)]
+
+        # Convert the filtered DataFrame to an HTML table
+        html_table = filtered_data.to_html(classes='table table-striped', index=False)
+        return render_template("data.html", title=f"Global Alcohol Data - Country: {country}", table=html_table)
+    else:
+        return "<p>Failed to fetch data from the database.</p>", 500
+
+# Main driver function
 if __name__ == '__main__':
     app.run(debug=True)
 

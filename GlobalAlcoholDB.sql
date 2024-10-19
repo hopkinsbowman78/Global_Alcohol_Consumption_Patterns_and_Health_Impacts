@@ -1,61 +1,66 @@
--- Table: public.consumption_gdp
+--  Create the Global Alcohol Database
+CREATE DATABASE GlobalAlcoholDB;
 
-DROP TABLE IF EXISTS public.consumption_gdp;
+-- Connect to the new database
+\c GlobalAlcoholDB
 
-CREATE TABLE IF NOT EXISTS public.consumption_gdp
+
+
+-- Create the Table: public.alcohol_consumption_per_capita
+
+DROP TABLE IF EXISTS public.alcohol_consumption_per_capita;
+
+CREATE TABLE IF NOT EXISTS public.alcohol_consumption_per_capita
 (
     entity character varying(50) COLLATE pg_catalog."default" NOT NULL,
-    code character varying(50) COLLATE pg_catalog."default",
     year text COLLATE pg_catalog."default" NOT NULL,
-    total_alcohol_consumption_per_capita numeric(10,5),
-    gdp_per_capita numeric(10,4),
-    continent character varying(15) COLLATE pg_catalog."default"
+    alcohol_consumption_per_capita numeric(7,5) NOT NULL
 )
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public.consumption_gdp
+ALTER TABLE IF EXISTS public.alcohol_consumption_per_capita
     OWNER to postgres;
 
-select * from public.consumption_gdp
+select * from public.alcohol_consumption_per_capita
+
+
+
+-- Create the Table: public.alcohol_consumption_vs_gdp
+
+DROP TABLE IF EXISTS public.alcohol_consumption_vs_gdp;
+
+CREATE TABLE IF NOT EXISTS public.alcohol_consumption_vs_gdp
+(
+    entity character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    year text COLLATE pg_catalog."default" NOT NULL,
+    alcohol_consumption_per_capita numeric(7,5) NOT NULL,
+    alcohol_consumption_vs_gdp numeric(10,4) COLLATE pg_catalog."default" NOT NULL
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.alcohol_consumption_vs_gdp
+    OWNER to postgres;
+
+select * from public.alcohol_consumption_vs_gdp
 
 	
 
--- Table: public.fraction_of_mortality
+-- Create the Table: public.alcohol_related_mortality
 
-DROP TABLE IF EXISTS public.fraction_of_mortality;
+DROP TABLE IF EXISTS public.alcohol_related_mortality;
 
-CREATE TABLE IF NOT EXISTS public.fraction_of_mortality
+CREATE TABLE IF NOT EXISTS public.alcohol_related_mortality
 (
     entity character varying(50) COLLATE pg_catalog."default" NOT NULL,
-    code character varying(50) COLLATE pg_catalog."default" NOT NULL,
     year text COLLATE pg_catalog."default" NOT NULL,
-    alcohol_attributable_fractions numeric(4,1) NOT NULL
+    alcohol_related_mortality numeric(4,1) NOT NULL
 )
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public.fraction_of_mortality
+ALTER TABLE IF EXISTS public.alcohol_related_mortality
     OWNER to postgres;
 
-select * from public.fraction_of_mortality
-
--- Table: public.per_capita_litres
-
-DROP TABLE IF EXISTS public.per_capita_litres;
-
-CREATE TABLE IF NOT EXISTS public.per_capita_litres
-(
-    entity character varying(50) COLLATE pg_catalog."default" NOT NULL,
-    code character varying(50) COLLATE pg_catalog."default",
-    year text COLLATE pg_catalog."default" NOT NULL,
-    total_alcohol_consumption_per_capita numeric(7,5) NOT NULL
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.per_capita_litres
-    OWNER to postgres;
-
-select * from public.per_capita_litres
-
+select * from public.alcohol_related_mortality
