@@ -29,6 +29,15 @@ python app.py
 Step 6: Your Flask should be running locally.  
 Access it by navigating to: http://127.0.0.1:5000
 
+
+## Ethical Considerations
+## Data Sources
+- Our World in Data - Alcohol Consumption Dataset:
+Provides comprehensive data on alcohol consumption per capita by type (beer, wine, spirits) and region or country.
+  - Our World in Data - Alcohol Consumption
+- Global Burden of Disease (GBD) Study:
+Contains data on the health impacts of alcohol consumption, including mortality, disease burden, and disability-adjusted life years (DALYs) attributed to alcohol use.
+
 ## Data Dictionary
 
 This table provides detailed descriptions of each column in the dataset used for the Global Alcohol Consumption project.
@@ -42,13 +51,7 @@ This table provides detailed descriptions of each column in the dataset used for
 | `alcohol_related_mortality`     | Alcohol-attributable fractions, all-cause deaths (%) - Sex: both sexes.                                                |
 
 
-## Ethical Considerations
-## Data Sources
-- Our World in Data - Alcohol Consumption Dataset:
-Provides comprehensive data on alcohol consumption per capita by type (beer, wine, spirits) and region or country.
-  - Our World in Data - Alcohol Consumption
-- Global Burden of Disease (GBD) Study:
-Contains data on the health impacts of alcohol consumption, including mortality, disease burden, and disability-adjusted life years (DALYs) attributed to alcohol use.
+
 ## Contributors
 - Amie Mccall
 - Heather Bowman
