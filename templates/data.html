@@ -3,16 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title if title else "Select Country" }}</title>
+    <title>{{ title if title else "Global Alcohol Data" }}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
+        <h2 class="my-4">Global Alcohol Consumption and Health Impact Data</h2>
+        <p>This dataset provides insights into alcohol consumption patterns across various countries and their potential health and economic impacts. It combines data on alcohol consumption per capita, economic context (GDP), and alcohol-related mortality. </p>
+        <br> 
+        <h5>How to Use:</h5>
+        <ul>
+            <li><strong>Select a Country:</strong> Use the dropdown menu to view data specific to a country.</li>
+            <li><strong>View All Countries:</strong> Choose "All Countries" to compare trends across different nations.</li>
+            <li><strong>Download Data:</strong> Export the data by clicking the "Download Data as CSV" button.</li>
+        </ul>
+        <br> 
+
         {% if countries %}
-            <h2 class="my-4">Global Alcohol Consumption Patterns & Health Impacts Data</h2>
+            <h5 class="my-4">Select a Country:</h5>
             <form method="post" action="/">
                 <div class="form-group">
-                    <label for="country">Choose a country:</label>
                     <select class="form-control" id="country" name="country">
                         <option value="All">All Countries</option>
                         {% for country in countries %}
@@ -29,9 +39,52 @@
             <div>
                 {{ table|safe }}
             </div>
-            <!-- Update to pass selected_country if available -->
             <a href="{{ url_for('export_data', country=selected_country if selected_country else 'All') }}" class="btn btn-success mt-4">Download Data as CSV</a>
         {% endif %}
+
+        <!-- Show Data Dictionary to the Bottom of each Page -->
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h5 class="my-4">Data Dictionary:</h5>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Column Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>entity</code></td>
+                    <td>The name of the country or region.</td>
+                </tr>
+                <tr>
+                    <td><code>year</code></td>
+                    <td>The year the data was recorded.</td>
+                </tr>
+                <tr>
+                    <td><code>alcohol_consumption_per_capita</code></td>
+                    <td>Total alcohol consumption per capita (liters of pure alcohol, projected estimates, 15+ years of age).</td>
+                </tr>
+                <tr>
+                    <td><code>gdp_per_capita</code></td>
+                    <td>GDP per capita, PPP (constant 2017 international $).</td>
+                </tr>
+                <tr>
+                    <td><code>alcohol_related_mortality</code></td>
+                    <td>Alcohol-attributable fractions, all-cause deaths (%) - Sex: both sexes.</td>
+                </tr>
+            </tbody>
+        </table>
+        <br> 
     </div>
 </body>
 </html>
+

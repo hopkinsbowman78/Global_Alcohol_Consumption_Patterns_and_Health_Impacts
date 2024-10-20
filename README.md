@@ -29,6 +29,19 @@ python app.py
 Step 6: Your Flask should be running locally.  
 Access it by navigating to: http://127.0.0.1:5000
 
+## Data Dictionary
+
+This table provides detailed descriptions of each column in the dataset used for the Global Alcohol Consumption project.
+
+| Column Name                     | Description                                                                                                             |
+|---------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| `entity`                        | The name of the country or region.                                                                                      |
+| `year`                          | The year the data was recorded.                                                                                         |
+| `alcohol_consumption_per_capita`| Total alcohol consumption per capita (liters of pure alcohol, projected estimates, 15+ years of age).                   |
+| `gdp_per_capita`                | GDP per capita, PPP (constant 2017 international $).                                                                    |
+| `alcohol_related_mortality`     | Alcohol-attributable fractions, all-cause deaths (%) - Sex: both sexes.                                                |
+
+
 ## Ethical Considerations
 ## Data Sources
 - Our World in Data - Alcohol Consumption Dataset:
