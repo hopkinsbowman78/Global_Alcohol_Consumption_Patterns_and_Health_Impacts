@@ -9,7 +9,26 @@ This project aims to analyze global alcohol consumption patterns, trends over ti
 - References
 - Contributors
 
-## Interacations
+## Interacations  
+### Flask Deployment Guide
+Step 1: Clone the Repository  
+git clone https://github.com/hopkinsbowman78/Global_Alcohol_Consumption_Patterns_and_Health_Impacts.git
+
+Step 2: Navigate to the Project Directory
+
+Step 3: Create a Virtual Environment (Recommended)  
+**On Windows:**  python -m venv venv  
+**On macOS/Linux:**  source venv/bin/activate  
+
+Step 4: Install Dependencies  
+pip install -r requirements.txt
+
+Step 5: Run the Flask App  
+python app.py
+
+Step 6: Your Flask should be running locally.  
+Access it by navigating to: http://127.0.0.1:5000
+
 ## Ethical Considerations
 ## Data Sources
 - Our World in Data - Alcohol Consumption Dataset:
@@ -22,4 +41,3 @@ Contains data on the health impacts of alcohol consumption, including mortality,
 - Heather Bowman
 - Khalia Boone
 - Jazmin Austin
-

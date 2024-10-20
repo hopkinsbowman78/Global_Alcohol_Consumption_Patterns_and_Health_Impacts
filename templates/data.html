@@ -3,18 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
+    <title>{{ title if title else "Select Country" }}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
-        <h2 class="my-4">{{ title }}</h2>
-        <div>
-            {{ table|safe }}
-        </div>
+        {% if countries %}
+            <h2 class="my-4">Global Alcohol Consumption Patterns & Health Impacts Data</h2>
+            <form method="post" action="/">
+                <div class="form-group">
+                    <label for="country">Choose a country:</label>
+                    <select class="form-control" id="country" name="country">
+                        <option value="All">All Countries</option>
+                        {% for country in countries %}
+                            <option value="{{ country }}">{{ country }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        {% endif %}
+
+        {% if table %}
+            <h2 class="my-4">{{ title }}</h2>
+            <div>
+                {{ table|safe }}
+            </div>
+            <!-- Update to pass selected_country if available -->
+            <a href="{{ url_for('export_data', country=selected_country if selected_country else 'All') }}" class="btn btn-success mt-4">Download Data as CSV</a>
+        {% endif %}
     </div>
 </body>
 </html>
-
-
-
