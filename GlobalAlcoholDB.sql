@@ -1,8 +1,8 @@
 --  Create the Global Alcohol Database
-CREATE DATABASE GlobalAlcoholDB;
+-- CREATE DATABASE GlobalAlcoholDB;
 
 -- Connect to the new database
-\c GlobalAlcoholDB
+-- \c GlobalAlcoholDB
 
 
 
