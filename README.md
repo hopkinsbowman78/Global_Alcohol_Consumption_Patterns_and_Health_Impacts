@@ -76,9 +76,10 @@ By adhering to these ethical guidelines, your project can contribute valuable in
 ## Data Sources
 - Our World in Data - Alcohol Consumption Dataset:
 Provides comprehensive data on alcohol consumption per capita by type (beer, wine, spirits) and region or country.
-  - Our World in Data - Alcohol Consumption
+  - [Our World in Data - Alcohol Consumption](https://ourworldindata.org/alcohol-consumption)
 - Global Burden of Disease (GBD) Study:
 Contains data on the health impacts of alcohol consumption, including mortality, disease burden, and disability-adjusted life years (DALYs) attributed to alcohol use.
+  - [Global Burden of Disease (GBD) Study](https://www.healthdata.org/research-analysis/gbd-data)
 
 ## Data Dictionary
 
