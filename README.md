@@ -1,16 +1,18 @@
 # Global Alcohol Consumption Patterns and Health Impacts
-## Overview and purpose
-By using the ETL process on the data obtained from Our World in Data, this platform will allow users to explore the demographics of alcohol consumption, trends in consumption over time, and the public health consequences of alcohol use, including addiction and alcohol-related diseases.
-This project aims to analyze global alcohol consumption patterns, trends over time, and the associated health impacts. Using data from Our World in Data and the Global Burden of Disease (GBD) Study, we will explore demographics of alcohol consumption, shifts in alcohol use, and public health consequences, such as alcohol-related mortality and diseases.
+
 ## Table of Contents
 - Overview and Purpose
-- Interaction
+- Interactions
 - Ethical Considerations
 - Data Sources
 - Data Dictionary
 - Contributors
+  
+## Overview and purpose
+By using the ETL process on the data obtained from Our World in Data, this platform will allow users to explore the demographics of alcohol consumption, trends in consumption over time, and the public health consequences of alcohol use, including addiction and alcohol-related diseases.
+This project aims to analyze global alcohol consumption patterns, trends over time, and the associated health impacts. Using data from Our World in Data and the Global Burden of Disease (GBD) Study, we will explore demographics of alcohol consumption, shifts in alcohol use, and public health consequences, such as alcohol-related mortality and diseases.
 
-## Interacations  
+## Interactions
 ### Flask Deployment Guide
 **Step 1:** Clone the Repository  
 git clone https://github.com/hopkinsbowman78/Global_Alcohol_Consumption_Patterns_and_Health_Impacts.git
