@@ -6,27 +6,28 @@ This project aims to analyze global alcohol consumption patterns, trends over ti
 - Overview and Purpose
 - Interaction
 - Ethical Considerations
-- References
+- Data Sources
+- Data Dictionary
 - Contributors
 
 ## Interacations  
 ### Flask Deployment Guide
-Step 1: Clone the Repository  
+**Step 1:** Clone the Repository  
 git clone https://github.com/hopkinsbowman78/Global_Alcohol_Consumption_Patterns_and_Health_Impacts.git
 
-Step 2: Navigate to the Project Directory
+**Step 2:** Navigate to the Project Directory
 
-Step 3: Create a Virtual Environment (Recommended)  
+**Step 3:** Create a Virtual Environment (Recommended)  
 **On Windows:**  python -m venv venv  
 **On macOS/Linux:**  source venv/bin/activate  
 
-Step 4: Install Dependencies  
+**Step 4:** Install Dependencies  
 pip install -r requirements.txt
 
-Step 5: Run the Flask App  
+**Step 5:** Run the Flask App  
 python app.py
 
-Step 6: Your Flask should be running locally.  
+**Step 6:** Your Flask should be running locally.  
 Access it by navigating to: http://127.0.0.1:5000
 
 
