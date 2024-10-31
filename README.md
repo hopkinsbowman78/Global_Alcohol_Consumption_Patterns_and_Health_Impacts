@@ -44,6 +44,8 @@ Provides comprehensive data on alcohol consumption per capita by type (beer, win
 - Global Burden of Disease (GBD) Study:
 Contains data on the health impacts of alcohol consumption, including mortality, disease burden, and disability-adjusted life years (DALYs) attributed to alcohol use.
   - [Global Burden of Disease (GBD) Study](https://www.healthdata.org/research-analysis/gbd-data)
+-  Code Source:
+  - ChatGPT and GitHub Copilot were used to help with the code in this project.
 
 ## Data Dictionary
 
