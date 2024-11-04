@@ -9,8 +9,8 @@
 - Contributors
   
 ## Overview and purpose
-This project aims to analyze global alcohol consumption patterns, trends over time, and the associated health impacts. By using the ETL process on the data obtained from Our World in Data, this platform will allow users to explore the demographics of alcohol consumption, trends in consumption over time, and the public health consequences of alcohol use, including addiction and alcohol-related diseases.
-Using data from Our World in Data and the Global Burden of Disease (GBD) Study, we will explore demographics of alcohol consumption, shifts in alcohol use, and public health consequences, such as alcohol-related mortality and diseases.
+This project aims to analyze global alcohol consumption patterns, trends over time, and the associated health impacts. By using the ETL process on the data obtained from Our World in Data to create a PostSQL Database and subsequent Flask Application, this platform will allow users to explore the demographics of alcohol consumption, trends in consumption over time, and the public health consequences of alcohol use, including addiction and alcohol-related diseases.
+
 
 ## Interactions
 ### Flask Deployment Guide
