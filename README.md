@@ -1,4 +1,4 @@
-# Global Alcohol Consumption Patterns and Health Impacts
+# Project 3
 
 ## Table of Contents
 - Overview and Purpose
