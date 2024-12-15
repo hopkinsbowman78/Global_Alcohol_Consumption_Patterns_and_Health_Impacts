@@ -1,4 +1,4 @@
-# Project 3
+# project-3-database-management
 
 ## Table of Contents
 - Overview and Purpose
